@@ -17,7 +17,7 @@
   programs.vscode = {
     enable = true;
 
-    # if downgrading caused problems, get rid of profiles.default
+    # if downgrading caused problems, un-nest profiles.default
     profiles.default = {
       # extensions = (with pkgs.vscode-extensions; [
         
@@ -36,8 +36,8 @@
               "nixos" = {
                 "expr" = "(builtins.getFlake \"${config.home.homeDirectory}/nixos/flake.nix\").nixosConfigurations.frameworkLaptop16.options";
               };
-            "home_manager" = {
-              "expr" = "(builtins.getFlake \"${config.home.homeDirectory}/nixos/flake.nix\").homeConfigurations.frameworkLaptop16.options";
+              "home_manager" = {
+                "expr" = "(builtins.getFlake \"${config.home.homeDirectory}/nixos/flake.nix\").homeConfigurations.frameworkLaptop16.options";
               };
             };
           };

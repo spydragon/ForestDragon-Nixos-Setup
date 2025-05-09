@@ -12,8 +12,6 @@
   ];
 
   home.sessionVariables = {
-    # Hint electron apps to use wayland
-    NIXOS_OZONE_WL = "1";
   };
 
   home.packages = with pkgs; with libsForQt5; [

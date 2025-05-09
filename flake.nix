@@ -30,16 +30,27 @@
   };
 
   outputs = { self, nixpkgs, nixos-hardware, fw-fanctrl, zen-browser, ...}@inputs: {
-    # use "nixos", or your hostname as the name of the configuration
-    # it's a better practice than "default" shown in the video
-    nixosConfigurations.frameworkLaptop16 = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        fw-fanctrl.nixosModules.default
-        nixos-hardware.nixosModules.framework-16-7040-amd
-        ./systems/FrameworkLaptop16/configuration.nix
-        inputs.home-manager.nixosModules.default
-      ];
+    nixosConfigurations = {
+
+      frameworkLaptop16 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          fw-fanctrl.nixosModules.default
+          nixos-hardware.nixosModules.framework-16-7040-amd
+          ./systems/FrameworkLaptop16/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
+
+      nothingPhone2a = {
+        # this js a possible future project (I have no Idea what I'm getting my self into...)
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./systems/NothingPhone2a/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
+
     };
   };
 }

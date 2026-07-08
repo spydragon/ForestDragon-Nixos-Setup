@@ -99,9 +99,14 @@
 
       # Bootloader.
       boot = {
+
+        consoleLogLevel = 3;
+        initrd.verbose = false;
         kernelParams = [
           "quiet"
           "amdgpu.abmlevel=0"
+          "udev.log_level=3"
+          "systemd.show_status=auto"
         ];
         loader.grub = {
           enable = true;

@@ -98,11 +98,17 @@
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
       # Bootloader.
-      boot.loader.grub = {
-        enable = true;
-    	device = "nodev";
-    	useOSProber = true;
-    	efiSupport = true;
+      boot = {
+        kernelParams = [
+          "quiet"
+          "amdgpu.abmlevel=0"
+        ];
+        loader.grub = {
+          enable = true;
+    	  device = "nodev";
+    	  useOSProber = true;
+          efiSupport = true;
+        };
       };
       boot.loader.efi.canTouchEfiVariables = true;
 
@@ -182,9 +188,6 @@
         #   };
         # };
       };
-
-
-      boot.kernelParams = [ "amdgpu.abmlevel=0" ];
 
       services.udev.extraRules = ''
         SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.1.1.4/power/wakeup}="disabled"

@@ -32,6 +32,14 @@
 	#   position = { x = 1280; y = 0; };
 	# };
     outputs."eDP-1" = {
+      mode = _: {
+        props = {
+          width = 2560;
+          height = 1600;
+          refresh = 60.0;
+        };
+      };
+
       variable-refresh-rate = _: {
         props = {
           on-demand = true;

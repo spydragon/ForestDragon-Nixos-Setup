@@ -32,7 +32,7 @@
 	#   position = { x = 1280; y = 0; };
 	# };
     outputs."eDP-1" = {
-      mode = "2560x1600@60.000";
+      mode = "2560x1600@60.002";
 
       variable-refresh-rate = _: {
         props = {

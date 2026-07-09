@@ -32,7 +32,11 @@
 	#   position = { x = 1280; y = 0; };
 	# };
     outputs."eDP-1" = {
-      variable-refresh-rate = _: {};
+      variable-refresh-rate = _: {
+        props = {
+          on-demand = true;
+        };
+      };
     };
 	layout = {
 	  gaps = 16;
@@ -91,11 +95,19 @@
 	    matches = [
 	      { 
 	        app-id = "firefox$";
-		title = "^Picture-in-Picture$";
+            title = "^Picture-in-Picture$";
 	      }
 	    ];
 	    open-floating = true;
 	  }
+      {
+        matches = [
+          {
+            app-id = "steam_app_[0-9]+$";
+          }
+        ];
+        variable-refresh-rate = _: {};
+      }
 	  # {
 	  #   matches = [
 	  #     { app-id = "^org.keepassxc.KeePassXC$"; }

@@ -37,7 +37,6 @@
       variable-refresh-rate = _: {
         props = {
           on-demand = true;
-          vrr-mode-switch = true;
         };
       };
     };

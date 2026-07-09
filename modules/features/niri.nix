@@ -106,7 +106,7 @@
             app-id = "steam_app_[0-9]+$";
           }
         ];
-        variable-refresh-rate = _: {};
+        variable-refresh-rate = true;
       }
 	  # {
 	  #   matches = [

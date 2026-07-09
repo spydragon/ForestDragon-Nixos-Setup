@@ -202,7 +202,31 @@
 
       services.fwupd.enable = true;
 
-      services.power-profiles-daemon.enable = true;
+      services.power-profiles-daemon.enable = false;
+      powerManagement.powertop.enable = false;
+
+      services.tlp = {
+        enable = true;
+        settings = {
+          # 1. CPU & Performance
+          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+          CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
+          # 2. PCIe Active State Power Management (Massive power saver)
+          RUNTIME_PM_ON_BAT = "auto";
+          PCIE_ASPM_ON_BAT = "powersupersave";
+
+          # 3. Radios & Network (Disable unneeded background operations)
+          DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth"; # Keeps BT off until manually enabled
+          WIFI_PWR_ON_BAT = "on";
+          WOL_DISABLE = "Y"; # Disable Wake-on-LAN
+
+          # 4. USB Auto-Suspend & Blacklist
+          USB_AUTOSUSPEND = 1;
+          # REPLACE WITH YOUR ACTUAL KEYBOARD ID FROM `lsusb`
+          USB_EXCLUDE = "32ac:0012 27c6:609c 32ac:0014";
+        };
+      };
 
       services.fwupd.extraRemotes = [ "lvfs-testing" ];
       # Might be necessary once to make the update succeed

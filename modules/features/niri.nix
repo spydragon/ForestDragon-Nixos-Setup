@@ -31,6 +31,9 @@
 	#   transform = "normal";
 	#   position = { x = 1280; y = 0; };
 	# };
+    outputs."eDP-1" = {
+      variable-refresh-rate = _: {};
+    };
 	layout = {
 	  gaps = 16;
 	  center-focused-column = "never";

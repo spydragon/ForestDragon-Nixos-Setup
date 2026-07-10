@@ -83,7 +83,7 @@
       "${lib.getExe pkgs.wl-gammarelay-rs}"
 	];
 	spawn-sh-at-startup = [
-	  "${lib.getExe pkgs.mpvpaper} ALL ~/Wallpapers/EotE_Wallpaper_2K.mp4 -o \"loop-file=inf panscan=1.0\""
+	  "${lib.getExe pkgs.mpvpaper} ALL ~/Wallpapers/EotE_Wallpaper_2K.mp4 --auto-pause -o \"loop-file=inf panscan=1.0\""
 	];
 	xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 

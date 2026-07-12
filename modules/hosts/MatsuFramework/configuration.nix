@@ -81,14 +81,14 @@
     	HibernateDelaySec = "30min";
       };
 
-      systemd.user.services.pause-media-on-sleep = {
-        description = "Pause media players before sleep or hibernate";
-        before = [ "sleep.target" ];
-        wantedBy = [ "sleep.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${lib.getExe pkgs.playerctl} -a pause";
-        };
+      powerManagement = {
+        enable = true;
+        powerDownCommands = ''
+          ${lib.getExe pkgs.alsa-utils} -q set Master mute || true
+        '';
+        powerUpCommands = ''
+          ${lib.getExe pkgs.alsa-utils} -q set Master unmute || true
+        '';
       };
 
       nix = {

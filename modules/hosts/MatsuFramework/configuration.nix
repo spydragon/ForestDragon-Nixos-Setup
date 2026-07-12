@@ -91,6 +91,28 @@
         '';
       };
 
+      # Systemd services to mute audio hardware directly before hibernate/sleep
+      # and unmute it immediately upon wake-up.
+      systemd.services.mute-audio-on-sleep = {
+        description = "Mute hardware ALSA mixer before entering sleep/hibernation";
+        before = [ "sleep.target" ];
+        wantedBy = [ "sleep.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${lib.getExe' pkgs.alsa-utils "amixer"} -q set Master mute";
+        };
+      };
+
+      systemd.services.unmute-audio-on-resume = {
+        description = "Unmute hardware ALSA mixer after waking up from sleep/hibernation";
+        after = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
+        wantedBy = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${lib.getExe' pkgs.alsa-utils "amixer"} -q set Master unmute";
+        };
+      };
+
       nix = {
     	gc = {
     	  automatic = true;

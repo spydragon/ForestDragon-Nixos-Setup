@@ -81,16 +81,6 @@
     	HibernateDelaySec = "30min";
       };
 
-      powerManagement = {
-        enable = true;
-        powerDownCommands = ''
-          ${lib.getExe pkgs.alsa-utils} -q set Master mute || true
-        '';
-        powerUpCommands = ''
-          ${lib.getExe pkgs.alsa-utils} -q set Master unmute || true
-        '';
-      };
-
       # Systemd services to mute audio hardware directly before hibernate/sleep
       # and unmute it immediately upon wake-up.
       systemd.services.mute-audio-on-sleep = {

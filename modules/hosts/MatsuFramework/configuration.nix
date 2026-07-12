@@ -5,7 +5,7 @@
     # your system.  Help is available in the configuration.nix(5) man page
     # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-    { config, pkgs, ... }:
+    { config, pkgs, lib, ... }:
 
     {
       imports =
@@ -79,6 +79,16 @@
 
       systemd.sleep.settings.Sleep = {
     	HibernateDelaySec = "30min";
+      };
+
+      systemd.user.services.pause-media-on-sleep = {
+        description = "Pause media players before sleep or hibernate";
+        before = [ "sleep.target" ];
+        wantedBy = [ "sleep.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${lib.getExe pkgs.playerctl} -a pause";
+        };
       };
 
       nix = {

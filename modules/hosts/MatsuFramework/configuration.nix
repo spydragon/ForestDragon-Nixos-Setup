@@ -295,7 +295,7 @@
         enable = true;
         tod = {
           enable = true;
-          tod.driver = pkgs.libfprint-2-tod1-goodix;
+          driver = pkgs.libfprint-2-tod1-goodix;
         };
       };
       # List packages installed in system profile. To search, run:

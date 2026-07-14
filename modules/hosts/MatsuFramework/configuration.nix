@@ -217,19 +217,20 @@
         SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0018", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.1.1.4/power/wakeup}="disabled"
       '';
 
-      services.fwupd.enable = true;
+      services.fwupd = {
+        enable = true;
+        extraRemotes = [ "lvfs-testing" ];
+        uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
+      };
 
       services = {
+        acpid.enable = true;
         power-profiles-daemon.enable = true;
         upower = {
           enable = true;
           criticalPowerAction = "Hibernate";
         };
       };
-
-      services.fwupd.extraRemotes = [ "lvfs-testing" ];
-      # Might be necessary once to make the update succeed
-      services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
 
       hardware.fw-fanctrl = {
         enable = true;
@@ -285,19 +286,18 @@
     	};
       };
 
-
       services.pulseaudio = {
         enable = false;
     	support32Bit = false;
       };
 
-
-
-      services.fprintd.enable = true;
-  
-      services.fprintd.tod.enable = true;
-      services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
-
+      services.fprintd = {
+        enable = true;
+        tod = {
+          enable = true;
+          tod.driver = pkgs.libfprint-2-tod1-goodix;
+        };
+      };
       # List packages installed in system profile. To search, run:
       # $ nix search wget
 

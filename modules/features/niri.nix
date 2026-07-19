@@ -76,7 +76,6 @@
 	  };
 	};
 	spawn-at-startup = [
-      "${lib.getExe pkgs.sway-audio-idle-inhibit}"
 	  "${lib.getExe pkgs.swaybg} -m fill -i ~/wallpaper.png"
 	  "${lib.getExe self'.packages.myMako}"
 	  "${lib.getExe self'.packages.myWaybar}"

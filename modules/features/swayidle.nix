@@ -5,7 +5,6 @@
     nixosModules.mySwayidle = { pkgs, ... }: {
       environment.systemPackages = [
         inputs.self.packages.${pkgs.stenv.hostPlatform.system}.mySwayidle
-        pkgs.sway-audio-idle-inhibit
       ];
     };
   };

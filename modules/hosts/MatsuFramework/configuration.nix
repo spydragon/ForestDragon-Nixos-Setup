@@ -16,6 +16,7 @@
     	  self.nixosModules.myNeovim
     	  self.nixosModules.myWaybar
           self.nixosModules.smartDimmer
+          /home/matsunoki/smb/smb.nix
         ];
 
       programs.steam = {

@@ -313,6 +313,7 @@
       	kdePackages.kdenlive
 	    cider-2
       	pavucontrol
+        qtcreator
         fw-fanctrl
 	    fastfetch
         vesktop

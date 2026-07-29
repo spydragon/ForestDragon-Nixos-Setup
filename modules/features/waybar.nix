@@ -223,7 +223,7 @@
             "custom/suspend"
 	        "custom/hibernate"
             "custom/lock"
-            "custom/idlekiller"
+            "idle_inhibitor"
             "user"
           ];
           orientation = "inherit";
@@ -263,9 +263,13 @@
           tooltip-format = "Lock";
         };
 
-        "custom/idlekiller" = {
-          format = "";
-          on-click = "pkill hypridle || hypridle";
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+          on-click = "pkill -f ${lib.getExe self'.packages.mySwayidle} || ${lib.getExe self'.packages.mySwayidle}";
           tooltip-format = "Inhibit Idle";
         };
 

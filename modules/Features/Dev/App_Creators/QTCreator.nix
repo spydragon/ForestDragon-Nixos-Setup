@@ -14,8 +14,11 @@
       buildInputs = with pkgs; [
         qt6.qtbase
         qt6.qtdeclarative
+        qt6.qtwayland
         qtcreator
       ];
+
+      QT_QPA_PLATFORM = "wayland;xcb";
 
       shellHook = ''
         echo "Qt 6 Development Shell Loaded"

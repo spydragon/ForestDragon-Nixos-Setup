@@ -191,10 +191,14 @@
           on-click-right = "close";
         };
 
+        tray = {
+          format = "{icon}";
+        };
+
         "group/apps" = {
           modules = [
             "custom/appmenu"
-            "wlr/taskbar"
+            "tray"
           ];
           orientation = "inherit";
           drawer = {

@@ -1,29 +1,37 @@
-{ ... }:
-
-{
-  perSystem = { pkgs, ... }: {
-    devShells.QTCreator = pkgs.mkShell {
-      nativeBuildInputs = with pkgs; [
-        cmake
-        ninja
-        gcc
-        gdb
-        qt6.wrapQtAppsHook
+{ ... }: {
+  perSystem = { pkgs, ... }: 
+    let
+      myQtEnv = pkgs.qt6.env "qt6-dev-env" [
+        pkgs.qt6.qtbase
+        pkgs.qt6.qtdeclarative
+        pkgs.qt6.qtwayland
       ];
+    in {
+      devShells.QTCreator = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          cmake
+          ninja
+          gcc
+          gdb
+          qt6.wrapQtAppsHook
+        ];
 
-      buildInputs = with pkgs; [
-        qt6.qtbase
-        qt6.qtdeclarative
-        qt6.qtwayland
-        qtcreator
-      ];
+        buildInputs = [
+          myQtEnv
+          pkgs.qt6.qtbase # <-- ADDED THIS BACK to satisfy the setup hook
+          pkgs.qtcreator
+        ];
 
-      QT_QPA_PLATFORM = "wayland;xcb";
+        QT_QPA_PLATFORM = "wayland;xcb";
 
-      shellHook = ''
-        echo "Qt 6 Development Shell Loaded"
-        echo "Type 'qtcreator &' to launch the IDE with full Nix toolchain context."
-      '';
+        shellHook = ''
+          if [ -z "$XDG_RUNTIME_DIR" ]; then
+            export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+          fi
+
+          echo "Qt 6 Combined Environment Shell Loaded"
+          echo "Launch with: qtcreator &"
+        '';
+      };
     };
-  };
 }

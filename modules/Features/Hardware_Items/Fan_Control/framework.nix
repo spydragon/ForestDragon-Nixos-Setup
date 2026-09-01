@@ -13,7 +13,7 @@
     hardware.fw-fanctrl = {
       enable = true;
       config = {
-        defaultStrategy = "Minimal";
+        defaultStrategy = "Default";
         strategies = {
           "Default" = {
             fanSpeedUpdateFrequency = 5;

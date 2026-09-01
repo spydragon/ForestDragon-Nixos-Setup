@@ -7,11 +7,13 @@
       autoGarbageCollect
       autoUpgrade
       bluetooth
+      cozy
       fingerPrint
       frameworkFanControl
       frameworkPowerManagement
       fwupd
       git
+      libation
       myNeovim
       network
       niri

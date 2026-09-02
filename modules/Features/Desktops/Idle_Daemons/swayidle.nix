@@ -5,6 +5,7 @@
     nixosModules.mySwayidle = { pkgs, ... }: {
       environment.systemPackages = [
         inputs.self.packages.${pkgs.stenv.hostPlatform.system}.mySwayidle
+        pkgs.wayland-pipewire-idle-inhibit
       ];
     };
   };

@@ -105,6 +105,7 @@
 	  "${lib.getExe self'.packages.myWaybar}"
 	  "${lib.getExe self'.packages.mySwayidle}"
       "${lib.getExe pkgs.wl-gammarelay-rs}"
+      "${lib.getExe pkgs.wayland-pipewire-idle-inhibit}"
 	];
 	spawn-sh-at-startup = [
 	  "${lib.getExe pkgs.mpvpaper} ALL ~/Wallpapers/EotE_Wallpaper_2K.mp4 --auto-pause -o \"loop-file=inf panscan=1.0\""

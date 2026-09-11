@@ -1,6 +1,8 @@
-{ ... }:
+{self, inputs, ... }:
+
 {
-  flake.nixosModules.libation = {pkgs, ... }: {
+
+  flake.nixosModules.libation = { pkgs, ... }: {
     environment.systemPackages = [
       pkgs.libation
     ];

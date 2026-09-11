@@ -20,7 +20,7 @@
       smartDimmer
       Steam
       superfile
-      tailscale
+      Tailscale 
       userMatsuNoKi
       myWaybar
       zen

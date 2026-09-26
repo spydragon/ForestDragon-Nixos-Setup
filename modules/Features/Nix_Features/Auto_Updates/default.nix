@@ -10,6 +10,8 @@
         dates = "weekly";
         flake = "/home/nixos#${config.networking.hostName}";
         flags = [
+          "--update-input"
+          "nixpkgs"
           "--impure"
         ];
       };

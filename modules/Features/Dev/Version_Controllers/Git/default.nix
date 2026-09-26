@@ -15,6 +15,15 @@
         rebase = true
     '';
 
+    programs.git = {
+      enable = true;
+      config = {
+        safe = {
+          directory = "/home/nixos";
+        };
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       git
       lazygit

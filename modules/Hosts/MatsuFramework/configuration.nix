@@ -41,7 +41,7 @@
       };
       boot.loader.efi.canTouchEfiVariables = true;
 
-      networking.hostName = "nixos"; # Define your hostname.
+      networking.hostName = "MatsuFramework"; # Define your hostname.
 
       # Set your time zone.
       time.timeZone = "America/Boise";

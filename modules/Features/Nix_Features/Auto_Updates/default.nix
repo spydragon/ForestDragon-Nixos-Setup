@@ -8,7 +8,10 @@
       system.autoUpgrade = {
         enable = true;
         dates = "weekly";
-        flake = "home/nixos";
+        flake = "/home/nixos#${config.networking.hostName}";
+        flags = [
+          "--impure"
+        ];
       };
     };
 }

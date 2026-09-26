@@ -23,6 +23,7 @@
       SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0018", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.1.1.4/power/wakeup}="disabled"
     '';
 
+
     services = {
       acpid.enable = true;
       power-profiles-daemon.enable = true;

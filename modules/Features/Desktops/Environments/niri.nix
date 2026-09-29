@@ -115,7 +115,11 @@
 	screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 	window-rules = [
 	  {
-	    matches = [ { app-id = "^org.wezfurlong.wezterm$"; } ];
+	    matches = [
+          {
+            app-id = "^org.wezfurlong.wezterm$";
+          }
+        ];
 	    default-column-width = _: {};
 	  }
 	  {
@@ -124,6 +128,11 @@
 	        app-id = "firefox$";
             title = "^Picture-in-Picture$";
 	      }
+          { 
+	        app-id = "zen$";
+            title = "^Picture-in-Picture$";
+	      }
+
 	    ];
 	    open-floating = true;
 	  }
@@ -134,6 +143,22 @@
           }
         ];
         variable-refresh-rate = true;
+      }
+      {
+        matches = [
+          {
+            app-id = "^steam$";
+            title = "^notificationtoasts_\\d+_desktop$";
+          }
+        ];
+        default-floating-position = _: {
+          props = {
+            x = 0;
+            y = 0;
+            relative-to = "bottom-left";
+          };
+        };
+        open-focused = false;
       }
 	  # {
 	  #   matches = [
